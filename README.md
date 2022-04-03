@@ -2,7 +2,7 @@
 
 The input capture library for react built around keypress.js library.
 
-[Demo](https://iamvishal.github.io/locus_assignment)
+[Demo](https://iamvishal345.github.io/locus_assignment)
 
 ## Use and setup
 
