@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { ComponentFour } from "./components/ComponentFour";
+import { ComponentOne } from "./components/ComponentOne";
+import { ComponentThree } from "./components/ComponentThree";
+import { ComponentTwo } from "./components/ComponentTwo";
+import { KeyboardShortcutProvider } from "./keypress-react";
 
 function App() {
+  const [remove, setRemove] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <KeyboardShortcutProvider>
+      <div className="App">
+        <ComponentOne />
+        <ComponentTwo />
+        {remove && <ComponentThree />}
+        <div>
+          <ComponentFour />
+          {/* Test  if activeShortcuts array updates */}
+          <button onClick={() => setRemove(!remove)}>Toggle</button>
+        </div>
+      </div>
+    </KeyboardShortcutProvider>
   );
 }
 
