@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/locus_assignment/static/css/main.f44efcaf.css",
+    "main.js": "/locus_assignment/static/js/main.15a65ca7.js",
+    "static/js/787.1893a42f.chunk.js": "/locus_assignment/static/js/787.1893a42f.chunk.js",
+    "index.html": "/locus_assignment/index.html",
+    "main.f44efcaf.css.map": "/locus_assignment/static/css/main.f44efcaf.css.map",
+    "main.15a65ca7.js.map": "/locus_assignment/static/js/main.15a65ca7.js.map",
+    "787.1893a42f.chunk.js.map": "/locus_assignment/static/js/787.1893a42f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f44efcaf.css",
+    "static/js/main.15a65ca7.js"
+  ]
+}
