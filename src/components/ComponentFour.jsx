@@ -1,6 +1,8 @@
 import { useKeyboardShortcutContext } from "../keypress-react";
 
+let counter = 0;
 export const ComponentFour = () => {
+  console.log("rendered component 4 ", counter++);
   const { activeShortcuts } = useKeyboardShortcutContext();
   return (
     <div className="component">

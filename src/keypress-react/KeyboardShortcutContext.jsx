@@ -1,46 +1,36 @@
 import keypress from "keypress.js";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 const KeyboardShortcut = createContext({
   keypressInstance: null,
   activeShortcuts: [],
-  updateActiveShortcuts: (shortcut) => {},
-  removeShortcut: (combo) => {},
+  updateActiveShortcuts: () => {},
 });
 
 export const useKeyboardShortcutContext = () => useContext(KeyboardShortcut);
 
 export const KeyboardShortcutProvider = ({ children }) => {
-  const [activeShortcuts, setActiveShortcuts] = useState([]);
-
-  const updateActiveShortcuts = useCallback((shortcut) => {
-    setActiveShortcuts((activeShortcuts) => [...activeShortcuts, shortcut]);
-  }, []);
-
+  const [activeShortcutsCount, setActiveShortcutsCount] = useState(0);
   const keypressInstance = useMemo(() => new keypress.Listener(), []);
-
-  const removeShortcut = useCallback(
-    (combo) =>
-      setActiveShortcuts((activeShortcuts) =>
-        activeShortcuts.filter((shortcut) => shortcut.comboObject !== combo)
-      ),
-    []
+  const activeShortcuts = useMemo(
+    () =>
+      keypressInstance
+        .get_registered_combos()
+        .map(({ description, keys }) => ({
+          description,
+          combo: keys.join("+"),
+        })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeShortcutsCount]
   );
+
+  const updateActiveShortcuts = (action) => {
+    setActiveShortcutsCount(activeShortcuts + action);
+  };
 
   return (
     <KeyboardShortcut.Provider
-      value={{
-        activeShortcuts,
-        updateActiveShortcuts,
-        removeShortcut,
-        keypressInstance,
-      }}
+      value={{ keypressInstance, activeShortcuts, updateActiveShortcuts }}
     >
       {children}
     </KeyboardShortcut.Provider>
